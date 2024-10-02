@@ -61,5 +61,23 @@ namespace eTickets.Controllers
             await _service.UpdateAsync(id, cinema);
             return RedirectToAction(nameof(Index));
         }
+
+        // GET: Cinema/Delete/1
+        public async Task<IActionResult> Delete(int id)
+        {
+            var cinemaDetails = await _service.GetByIdAsync(id);
+
+            if (cinemaDetails == null) return View("NotFound");
+            return View(cinemaDetails);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var cinemaDetails = await _service.GetByIdAsync(id);
+
+            if (cinemaDetails == null) return View("NotFound");
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
