@@ -68,6 +68,7 @@ namespace eTickets.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var producerDetails = await _service.GetByIdAsync(id);
+
             if (producerDetails == null) return View("NotFound");
             return View(producerDetails);
         }
